@@ -1,7 +1,12 @@
 import "./RightSidebar.css";
 import assets from "../../assets/assets";
+import { logout } from "../../config/firebase";
 
 const RightSidebar = () => {
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <div className="rs">
       <div className="rs-profile">
@@ -27,7 +32,7 @@ const RightSidebar = () => {
         </div>
       </div>
 
-      <button>Logout</button>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };
