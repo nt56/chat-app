@@ -1,7 +1,7 @@
 import "./Login.css";
 import assets from "../../assets/assets";
 import { useState } from "react";
-import { signup, login } from "../../config/firebase";
+import { signup, login, resetPass } from "../../config/firebase";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -69,6 +69,13 @@ const Login = () => {
           <p className="login-toggel">
             {isSignUp ? "Already have an account" : "Create an Account "}
             <span onClick={() => setIsSignUp(!isSignUp)}> click here</span>
+            <br />
+            {!isSignUp && (
+              <span className="forgot-pass" onClick={() => resetPass(email)}>
+                {" "}
+                Forgot Password
+              </span>
+            )}
           </p>
         </div>
       </form>
