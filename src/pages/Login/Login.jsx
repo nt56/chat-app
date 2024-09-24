@@ -3,20 +3,26 @@ import assets from "../../assets/assets";
 import { useState } from "react";
 import { signup, login } from "../../config/firebase";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isSignUp, setIsSignUp] = useState(true);
+
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const onSubmitHandler = () => {
     if (isSignUp) {
       signup(username, email, password);
-      toast.success("User Added Sucessfull");
+      toast.success("User Created Sucessfully");
+      navigate("/chat");
     } else {
-      login(username, password);
-      toast.success("User Logged in Sucessfull");
+      login(email, password);
+      toast.success("User Logged in Sucessfully");
+      navigate("/chat");
     }
   };
 

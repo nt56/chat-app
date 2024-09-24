@@ -38,7 +38,7 @@ const signup = async (username, email, password) => {
       lastSeen: Date.now(),
     });
     await setDoc(doc(db, "chats", user.uid), {
-      chatData: [],
+      chatsData: [],
     });
   } catch (error) {
     console.log(error);
@@ -49,7 +49,12 @@ const signup = async (username, email, password) => {
 //login logic
 const login = async (email, password) => {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
   } catch (error) {
     console.log(error);
     toast.error(error.code.split("/")[1].split("-").join(" "));
